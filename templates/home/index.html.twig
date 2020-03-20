@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mara Salvatrucha {% endblock %}
+
+{% block body %}
+    <section class="text-center">
+        <div class="container">
+        <p class="lead text-muted">Trouvez des offres sur des voyages organisés, des hébergements indépendants et bien plus encore...</p>
+        <p>
+            <a href="#" class="btn btn-primary my-2">Main call to action</a>
+            <a href="#" class="btn btn-secondary my-2">Secondary action</a>
+        </p>
+        </div>
+    </section>
+    <div class="album py-5 bg-light">
+        <div class="container">
+        <div class="row">
+            {% for offer in all_offer %}
+                <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                    <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+                    <div class="card-body">
+                    <h5 class="card-title">{{ offer.title | slice(0, 25) }} ...</h5>
+                    <p class="card-text">{{ offer.description | striptags | slice(0, 100) }} ...</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group">
+                        <a class="btn btn-sm btn-outline-secondary" href="{{ path('offer.show', {id: offer.id, slug: offer.slug})}}" role="button">Consulter</a>
+                        </div>
+                        <small class="text-muted">-</small>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            {% endfor %}
+        </div>
+        </div>
+        <section class="text-center">
+            <div class="container">
+            <p class="lead text-muted">Trouvez des offres sur des voyages organisés, des hébergements indépendants et bien plus encore...</p>
+            <p>
+                <a href="{{ path('offer.all') }}" class="btn btn-primary my-2">Toutes les offres</a>
+            </p>
+            </div>
+        </section>
+        
+    </div>
+{% endblock %}
